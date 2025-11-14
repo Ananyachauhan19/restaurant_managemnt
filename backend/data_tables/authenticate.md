@@ -2,4 +2,4 @@
 
 | id | username | password | role | name | createdAt | updatedAt |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | admin | $2a$10$5F2OLvxlekVQqECRiAtfregu2tBET1PjiXH4AXsnLNeUPnn3V00ye | admin | Admin User | 2025-09-15 09:01:31.379 +00:00 | 2025-09-15 09:01:31.379 +00:00 |
+| 1 | admin | $2a$10$A7i1u1c3R/feN5Oi2FEyDuGPc0jTBnG7aXmLFBTl4239zqBtA1dz2 | admin | Admin User | 2025-11-14 11:49:39.849 +00:00 | 2025-11-14 11:49:39.849 +00:00 |

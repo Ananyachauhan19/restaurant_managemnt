@@ -10,6 +10,7 @@ export default function Sidebar(){
         <Link to="/menu" className="py-2 px-3 rounded hover:bg-gray-700">Menu</Link>
         <Link to="/customers" className="py-2 px-3 rounded hover:bg-gray-700">Customers</Link>
         <Link to="/reports" className="py-2 px-3 rounded hover:bg-gray-700">Reports</Link>
+        <Link to="/terminal" className="py-2 px-3 rounded hover:bg-gray-700 bg-blue-600">🖥️ Terminal</Link>
       </nav>
     </aside>
   )

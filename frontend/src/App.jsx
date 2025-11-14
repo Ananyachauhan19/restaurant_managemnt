@@ -7,6 +7,7 @@ import Orders from './pages/Orders';
 import Menu from './pages/Menu';
 import Customers from './pages/Customers';
 import Reports from './pages/Reports';
+import Terminal from './pages/Terminal';
 import Login from './pages/Login';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
@@ -68,6 +69,13 @@ export default function App() {
           <PrivateRoute>
             <Layout>
               <Reports />
+            </Layout>
+          </PrivateRoute>
+        } />
+        <Route path="/terminal" element={
+          <PrivateRoute>
+            <Layout>
+              <Terminal />
             </Layout>
           </PrivateRoute>
         } />
