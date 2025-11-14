@@ -109,17 +109,19 @@ SQL> exit
 
 ## Available Tables
 
-Based on the schema, you can query these tables:
+The database contains the following tables:
 
+- `Users` - Admin and user authentication
 - `Customers` - Customer information
-- `Orders` - Order details
-- `OrderItems` - Items in each order
-- `MenuItems` - Restaurant menu
+- `Orders` - Order records
+- `OrderItems` - Individual items in orders
+- `MenuItems` - Available menu items (not `menu`)
 - `Payments` - Payment records
-- `Staff` - Staff members
-- `Inventory` - Inventory items
-- `Reviews` - Customer reviews
-- `Users` - System users
+- `inventory` - Stock management (lowercase)
+- `staff` - Employee records (lowercase)
+- `reviews` - Customer reviews (lowercase)
+
+**Note**: Table names are case-sensitive! Use exact names shown above.
 
 ## Example Queries
 
@@ -153,6 +155,30 @@ JOIN Customers c ON o.customerId = c.id;
 SELECT m.name, oi.quantity, oi.price 
 FROM OrderItems oi 
 JOIN MenuItems m ON oi.menuItemId = m.id;
+```
+
+### Quick Reference - Common Queries
+```sql
+-- List all tables
+SELECT name FROM sqlite_master WHERE type='table';
+
+-- View menu items
+SELECT * FROM MenuItems;
+
+-- View customers
+SELECT * FROM Customers;
+
+-- View orders
+SELECT * FROM Orders;
+
+-- View staff
+SELECT * FROM staff;
+
+-- View inventory
+SELECT * FROM inventory;
+
+-- View reviews
+SELECT * FROM reviews;
 ```
 
 ## Security
