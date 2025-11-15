@@ -159,7 +159,7 @@ export default function Customers() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">\n      {/* Header */}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">    {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 shadow-lg">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center">

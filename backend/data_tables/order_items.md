@@ -1,6 +1,6 @@
 # Order_items
 
-**Last Updated:** 15/11/2025, 11:18:37 pm
+**Last Updated:** 15/11/2025, 11:23:03 pm
 
 **Total Records:** 44
 
@@ -25,9 +25,6 @@
 | 20 | 7 | Order #7 (Table T-06) | Butter Naan | 1 | 160 | 160 | 2025-11-15T17:32:39.000Z |
 | 21 | 7 | Order #7 (Table T-06) | Mutton Curry | 1 | 90 | 90 | 2025-11-15T17:32:39.000Z |
 | 22 | 7 | Order #7 (Table T-06) | Sprite | 1 | 90 | 90 | 2025-11-15T17:32:39.000Z |
-| 23 | 8 | Order #8 (Table T-08) | Vegetable Pulao | 1 | 180 | 180 | 2025-11-15T17:32:39.000Z |
-| 24 | 8 | Order #8 (Table T-08) | Garlic Naan | 1 | 110 | 110 | 2025-11-15T17:32:39.000Z |
-| 25 | 8 | Order #8 (Table T-08) | Chana Dal | 1 | 120 | 120 | 2025-11-15T17:32:39.000Z |
 | 26 | 9 | Order #9 (Table T-09) | Raita | 1 | 140 | 140 | 2025-11-15T17:32:39.000Z |
 | 27 | 9 | Order #9 (Table T-09) | Papad | 1 | 70 | 70 | 2025-11-15T17:32:39.000Z |
 | 28 | 9 | Order #9 (Table T-09) | Mushroom Masala | 1 | 50 | 50 | 2025-11-15T17:32:39.000Z |
@@ -50,3 +47,6 @@
 | 45 | 15 | Order #15 (Table T-02) | Jeera Rice | 1 | 120 | 120 | 2025-11-15T17:32:39.000Z |
 | 46 | 15 | Order #15 (Table T-02) | Moong Dal | 1 | 100 | 100 | 2025-11-15T17:32:39.000Z |
 | 47 | 15 | Order #15 (Table T-02) | Mix Vegetable | 1 | 60 | 60 | 2025-11-15T17:32:39.000Z |
+| 48 | 16 | Order #16 (Table 6) | Aloo Gobi | 1 | 100 | 100 | 2025-11-15T17:53:03.000Z |
+| 49 | 16 | Order #16 (Table 6) | Aloo Jeera | 1 | 85 | 85 | 2025-11-15T17:53:03.000Z |
+| 50 | 16 | Order #16 (Table 6) | Badam Milk | 1 | 70 | 70 | 2025-11-15T17:53:03.000Z |
