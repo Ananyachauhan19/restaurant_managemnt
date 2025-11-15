@@ -11,28 +11,30 @@ const Staff = require('./staff')(sequelize);
 const Inventory = require('./inventory')(sequelize);
 const Review = require('./review')(sequelize);
 
-// Associations
-Customer.hasMany(Order, { foreignKey: 'customerId' });
-Order.belongsTo(Customer, { foreignKey: 'customerId' });
+// Associations with cascade delete/update where appropriate
+Customer.hasMany(Order, { foreignKey: 'customerId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Order.belongsTo(Customer, { foreignKey: 'customerId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 Order.belongsToMany(MenuItem, { through: OrderItem, foreignKey: 'orderId' });
 MenuItem.belongsToMany(Order, { through: OrderItem, foreignKey: 'menuItemId' });
 
-Order.hasMany(OrderItem, { foreignKey: 'orderId' });
-OrderItem.belongsTo(Order, { foreignKey: 'orderId' });
+// When an Order is deleted, cascade delete its OrderItems
+Order.hasMany(OrderItem, { foreignKey: 'orderId', onDelete: 'CASCADE', onUpdate: 'CASCADE', hooks: true });
+OrderItem.belongsTo(Order, { foreignKey: 'orderId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 OrderItem.belongsTo(MenuItem, { foreignKey: 'menuItemId' });
 MenuItem.hasMany(OrderItem, { foreignKey: 'menuItemId' });
 
-Order.hasOne(Payment, { foreignKey: 'orderId' });
-Payment.belongsTo(Order, { foreignKey: 'orderId' });
+// When an Order is deleted, also cascade delete its Payment
+Order.hasOne(Payment, { foreignKey: 'orderId', onDelete: 'CASCADE', onUpdate: 'CASCADE', hooks: true });
+Payment.belongsTo(Order, { foreignKey: 'orderId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
-// Review associations
-Review.belongsTo(Customer, { foreignKey: 'customerId' });
-Customer.hasMany(Review, { foreignKey: 'customerId' });
+// Review associations - if a Customer or Order is deleted, remove related Reviews
+Review.belongsTo(Customer, { foreignKey: 'customerId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Customer.hasMany(Review, { foreignKey: 'customerId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
-Review.belongsTo(Order, { foreignKey: 'orderId' });
-Order.hasMany(Review, { foreignKey: 'orderId' });
+Review.belongsTo(Order, { foreignKey: 'orderId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Order.hasMany(Review, { foreignKey: 'orderId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = {
   sequelize,

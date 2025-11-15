@@ -122,17 +122,25 @@ function watchMarkdownFiles() {
   }
 
   console.log('[markdownSync] Watching markdown files for changes...');
-  
+
+  const { isExportInProgress } = require('./markdownSyncFlag');
+
   // Watch the entire directory
   fs.watch(dataTablesDir, { recursive: false }, (eventType, filename) => {
     if (!filename || !filename.endsWith('.md')) return;
-    
+
     const baseName = path.basename(filename, '.md');
-    
+
+    // If table export just wrote this file, ignore the event
+    if (isExportInProgress(baseName)) {
+      // console.log(`[markdownSync] Ignoring change in ${filename} (export in progress)`);
+      return;
+    }
+
     // Debounce: wait 1 second after last change
     clearTimeout(watchMarkdownFiles.timeouts?.[baseName]);
     if (!watchMarkdownFiles.timeouts) watchMarkdownFiles.timeouts = {};
-    
+
     watchMarkdownFiles.timeouts[baseName] = setTimeout(() => {
       console.log(`[markdownSync] Detected change in ${filename}`);
       syncMarkdownToDatabase(baseName);

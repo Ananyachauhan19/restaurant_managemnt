@@ -3,6 +3,7 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const { Op } = require('sequelize');
 const { Customer } = require('../models');
+const { Order, OrderItem, Payment, Review, sequelize } = require('../models');
 
 // Get all customers
 router.get('/', async (req, res) => {
@@ -85,18 +86,42 @@ router.put('/:id', [
 
 // Delete customer
 router.delete('/:id', async (req, res) => {
+  const t = await sequelize.transaction();
   try {
     const { id } = req.params;
-    const customer = await Customer.findByPk(id);
-    
+    const customer = await Customer.findByPk(id, { transaction: t });
+
     if (!customer) {
+      await t.rollback();
       return res.status(404).json({ message: 'Customer not found' });
     }
 
-    await customer.destroy();
-    res.json({ message: 'Customer deleted successfully' });
+    // Find all orders for this customer
+    const orders = await Order.findAll({ where: { customerId: id }, attributes: ['id'], transaction: t });
+    const orderIds = orders.map(o => o.id);
+
+    // Delete payments for these orders
+    if (orderIds.length > 0) {
+      await Payment.destroy({ where: { orderId: orderIds }, transaction: t });
+      await OrderItem.destroy({ where: { orderId: orderIds }, transaction: t });
+      await Review.destroy({ where: { orderId: orderIds }, transaction: t });
+      await Order.destroy({ where: { id: orderIds }, transaction: t });
+    }
+
+    // Delete reviews left by the customer (not tied to orders)
+    await Review.destroy({ where: { customerId: id }, transaction: t });
+
+    // Finally delete the customer
+    await customer.destroy({ transaction: t });
+
+    await t.commit();
+    res.json({ message: 'Customer and related records deleted successfully' });
   } catch (error) {
-    console.error('Error deleting customer:', error);
+    await t.rollback();
+    console.error('Error deleting customer and related records:', error);
+    if (error.name === 'SequelizeForeignKeyConstraintError') {
+      return res.status(400).json({ message: 'Cannot delete customer because related records exist (orders, payments, reviews).' });
+    }
     res.status(500).json({ message: 'Failed to delete customer' });
   }
 });

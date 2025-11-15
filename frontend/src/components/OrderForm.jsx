@@ -106,17 +106,33 @@ export default function OrderForm({ onClose }) {
         toast.success('Customer created successfully!');
       }
       
-      // Create order
-      await api.createOrder({
+      // Normalize payload: ensure numeric fields are numbers
+      const payloadItems = items.map(i => ({
+        menuItemId: Number(i.menuItemId),
+        qty: Number(i.qty)
+      }));
+
+      const payload = {
         tableNumber: tableNumber.trim(),
-        customerId: finalCustomerId || null,
-        items
-      });
+        customerId: finalCustomerId ? Number(finalCustomerId) : null,
+        items: payloadItems
+      };
+
+      // Create order
+      await api.createOrder(payload);
       toast.success('Order created successfully!');
       onClose();
     } catch (error) {
       console.error('Error creating order:', error);
-      toast.error(error.message || 'Failed to create order');
+      // If backend returned validation errors, show them
+      if (error?.data?.errors && Array.isArray(error.data.errors)) {
+        const msgs = error.data.errors.map(e => e.msg || e.message).filter(Boolean).join('\n');
+        toast.error(msgs || error.message || 'Failed to create order');
+      } else if (error?.data?.message) {
+        toast.error(error.data.message);
+      } else {
+        toast.error(error.message || 'Failed to create order');
+      }
     } finally {
       setLoading(false);
     }

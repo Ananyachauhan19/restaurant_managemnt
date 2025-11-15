@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { sequelize } = require('../models');
+const { setExportInProgress, clearExportFlag } = require('./markdownSyncFlag');
 
 function ensureOutputDir() {
   const outDir = path.join(__dirname, '..', 'data_tables');
@@ -128,7 +129,14 @@ async function exportModelToMarkdown(model, filename) {
   }
   
   const content = `# ${filename.charAt(0).toUpperCase() + filename.slice(1)}\n\n**Last Updated:** ${new Date().toLocaleString()}\n\n**Total Records:** ${rows.length}\n\n${toMarkdownTable(rows)}\n`;
-  fs.writeFileSync(filePath, content, 'utf8');
+  // Mark export in progress to avoid triggering the markdown watcher loop
+  try {
+    setExportInProgress(filename, true);
+    fs.writeFileSync(filePath, content, 'utf8');
+  } finally {
+    // Clear the flag shortly after writing to re-enable watcher handling
+    setTimeout(() => clearExportFlag(filename), 1200);
+  }
 }
 
 async function exportAllTables(modelsRegistry) {

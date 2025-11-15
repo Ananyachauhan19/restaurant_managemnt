@@ -168,3 +168,48 @@ SELECT TABLE_NAME, TABLE_ROWS
 FROM information_schema.TABLES 
 WHERE TABLE_SCHEMA = 'hotel_db' 
 ORDER BY TABLE_NAME;
+
+
+-- Add a new order (you'll need to replace customerId with actual ID)
+INSERT INTO Orders (tableNumber, customerId, status, total, createdAt, updatedAt) 
+VALUES ('A5', 1, 'PENDING', 0, NOW(), NOW());
+
+-- Add order items (replace orderId and menuItemId with actual IDs)
+-- First get the last order ID:
+SET @lastOrderId = LAST_INSERT_ID();
+INSERT INTO OrderItems (orderId, menuItemId, quantity, price, createdAt, updatedAt) 
+VALUES 
+(@lastOrderId, 1, 2, 250, NOW(), NOW()),  -- 2 Margherita Pizza
+(@lastOrderId, 3, 1, 80, NOW(), NOW());   -- 1 Cold Coffee
+-- Update order total
+UPDATE Orders SET total = (SELECT SUM(quantity * price) FROM OrderItems WHERE orderId = @lastOrderId) WHERE id = @lastOrderId;
+
+select * from orders;
+
+UPDATE ORDERS SET STATUS = 'PREPARING' where id = 16;
+
+
+UPDATE ORDERS SET STATUS = 'READY' where id = 16;
+
+UPDATE ORDERS SET STATUS = 'DELIVERED' where id = 16;
+
+UPDATE ORDERS SET STATUS = 'PAID' where id = 16;
+
+DELETE FROM ORDERS WHERE id = 16;
+
+
+desc menuitems;
+
+
+insert into menuitems (name, price, category, isVeg, available, createdAt, updatedAt) 
+values ("Sheer Korma", 250, "Rice", 1, 1, NOW(), NOW());
+
+select * from menuitems;
+
+update menuitems set category = 'Dessert' where id = 119;
+
+
+select * from customers;
+delete from customers where name = 'Kavita Joshi';
+
+update customers set loyaltypoints = 5 where id = 3;

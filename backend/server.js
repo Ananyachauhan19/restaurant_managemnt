@@ -41,9 +41,7 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 4000;
 
 async function start(){
-  // Use a non-destructive sync to avoid SQLite ALTER table workarounds
-  // which create temporary backup tables and can fail when foreign keys exist.
-  await sequelize.sync();
+  await sequelize.sync({ alter: true });
   
   // Attach export hooks to automatically update markdown files when data changes
   attachExportHooks(models);
