@@ -13,7 +13,6 @@ const paymentsRouter = require('./routes/payments');
 const staffRouter = require('./routes/staff');
 const inventoryRouter = require('./routes/inventory');
 const reviewsRouter = require('./routes/reviews');
-const sqlRouter = require('./routes/sql');
 const authRouter = require('./routes/auth');
 const { auth } = require('./middleware/auth');
 
@@ -34,7 +33,6 @@ app.use('/api/payments', auth, paymentsRouter);
 app.use('/api/staff', auth, staffRouter);
 app.use('/api/inventory', auth, inventoryRouter);
 app.use('/api/reviews', auth, reviewsRouter);
-app.use('/api/sql', auth, sqlRouter);
 
 // Error handling
 const errorHandler = require('./middleware/error');

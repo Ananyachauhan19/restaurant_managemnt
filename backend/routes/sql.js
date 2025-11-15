@@ -42,7 +42,7 @@ router.post('/execute', auth, async (req, res) => {
       console.warn(`⚠️  Potentially dangerous SQL query executed: ${query.substring(0, 100)}`);
     }
 
-    // Execute the query - use a simpler approach that works with SQLite
+    // Execute the query - supports SQLite & MySQL (dialect differences minimal for SELECT/DDL here)
     let results;
     let affectedRows = 0;
     
@@ -162,7 +162,9 @@ router.post('/execute', auth, async (req, res) => {
         rowCount: 0,
         columns: [],
         affectedRows: affectedRows,
-        message: `Query executed successfully. ${affectedRows} row(s) affected.`
+        message: `Query executed successfully. ${affectedRows} row(s) affected.`,
+        dialect: sequelize.getDialect(),
+        insertId: (sequelize.getDialect() === 'mysql' && typeof results === 'object' && results && results.insertId) ? results.insertId : undefined
       });
     }
 

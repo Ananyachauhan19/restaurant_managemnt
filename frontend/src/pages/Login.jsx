@@ -23,41 +23,50 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
+      <div className="max-w-md w-full p-6 bg-white rounded-xl shadow-xl border border-gray-200">
+        <div className="text-center mb-6">
+          <div className="inline-block p-3 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl mb-3">
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h1 className="text-xl font-bold text-slate-800">Hotel Management System</h1>
+          <p className="text-xs text-slate-500 mt-1">Sign in to continue</p>
+        </div>
         
-        {/* Default credentials hint */}
-        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded text-sm">
-          <p className="font-medium text-blue-900">Default Credentials:</p>
-          <p className="text-blue-700">Username: <code className="bg-blue-100 px-1 rounded">admin</code></p>
-          <p className="text-blue-700">Password: <code className="bg-blue-100 px-1 rounded">admin123</code></p>
+        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs">
+          <p className="font-semibold text-blue-900 mb-1">Default Credentials:</p>
+          <div className="space-y-0.5 text-blue-700">
+            <p>Username: <code className="bg-blue-100 px-1.5 py-0.5 rounded font-mono">admin</code></p>
+            <p>Password: <code className="bg-blue-100 px-1.5 py-0.5 rounded font-mono">admin123</code></p>
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
           <div>
-            <label className="block text-sm font-medium mb-1">Username</label>
+            <label className="block text-xs font-medium text-slate-700 mb-1">Username</label>
             <input
               type="text"
               {...register('username')}
-              className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
-              placeholder="admin"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              placeholder="Enter username"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Password</label>
+            <label className="block text-xs font-medium text-slate-700 mb-1">Password</label>
             <input
               type="password"
               {...register('password')}
-              className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
-              placeholder="admin123"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              placeholder="Enter password"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-medium py-2.5 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg"
           >
-            Login
+            Sign In
           </button>
         </form>
       </div>

@@ -127,10 +127,10 @@ export default function Staff() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-purple-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-slate-100 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-purple-600 mx-auto mb-4"></div>
-          <p className="text-purple-600 font-medium">Loading Staff Data...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-3 border-purple-600 mx-auto mb-3"></div>
+          <p className="text-purple-600 font-medium text-sm">Loading Staff Data...</p>
         </div>
       </div>
     );
@@ -138,14 +138,14 @@ export default function Staff() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-purple-50 flex items-center justify-center">
-        <div className="text-center bg-white p-8 rounded-xl shadow-lg">
-          <div className="text-6xl mb-4">👥</div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Staff Management</h2>
-          <p className="text-gray-600 mb-6">Please log in to manage staff</p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-slate-100 flex items-center justify-center">
+        <div className="text-center bg-white p-6 rounded-lg shadow-md">
+          <div className="text-4xl mb-3">👥</div>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Staff Management</h2>
+          <p className="text-gray-600 text-sm mb-4">Please log in to manage staff</p>
           <a 
             href="/login" 
-            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+            className="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all shadow-md"
           >
             Go to Login
           </a>
@@ -155,11 +155,14 @@ export default function Staff() {
   }
 
   return (
-    <div className="min-h-screen bg-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-slate-100">
       {/* Header */}
-      <div className="bg-purple-600 text-white p-6 shadow-lg">
+      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-4 shadow-lg">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold mb-2">👥 Staff Management</h1>
+          <h1 className="text-2xl font-bold mb-1 flex items-center gap-2">
+            <span>👥</span>
+            <span>Staff Management</span>
+          </h1>
           <p className="text-purple-100">Manage your restaurant team and track performance</p>
         </div>
       </div>
@@ -210,7 +213,7 @@ export default function Staff() {
               </div>
               <div className="ml-4">
                 <p className="text-sm font-medium text-gray-600">Avg Experience</p>
-                <p className="text-3xl font-bold text-gray-900">{stats.experienceStats?.avgExperience?.toFixed(1) || 0} years</p>
+                <p className="text-3xl font-bold text-gray-900">{Number(stats.experienceStats?.avgExperience || 0).toFixed(1)} years</p>
               </div>
             </div>
           </div>

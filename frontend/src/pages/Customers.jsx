@@ -150,19 +150,24 @@ export default function Customers() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mx-auto mb-2"></div>
+          <p className="text-blue-600 font-medium text-sm">Loading Customers...</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
-      {/* Header */}
-      <div className="bg-blue-600 text-white p-6 shadow-lg">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">\n      {/* Header */}
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 shadow-lg">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-4xl font-bold mb-2">👥 Customer Management</h1>
+              <h1 className="text-2xl font-bold mb-1 flex items-center gap-2">
+                <span>👥</span>
+                <span>Customer Management</span>
+              </h1>
               <p className="text-blue-100">{filteredCustomers.length} customers registered</p>
             </div>
             <button

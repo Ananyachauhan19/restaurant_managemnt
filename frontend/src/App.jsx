@@ -10,7 +10,6 @@ import Staff from './pages/Staff';
 import Inventory from './pages/Inventory';
 import Reports from './pages/Reports';
 import CustomerReviews from './pages/CustomerReviews';
-import SQLTerminal from './pages/SQLTerminal';
 import Login from './pages/Login';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
@@ -22,11 +21,11 @@ function PrivateRoute({ children }) {
 
 function Layout({ children }) {
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-slate-50">
       <Sidebar />
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col overflow-hidden">
         <Header />
-        <main className="p-6 overflow-auto">
+        <main className="flex-1 overflow-auto p-4 scrollbar-thin">
           {children}
         </main>
       </div>
@@ -93,13 +92,6 @@ export default function App() {
           <PrivateRoute>
             <Layout>
               <CustomerReviews />
-            </Layout>
-          </PrivateRoute>
-        } />
-        <Route path="/sql" element={
-          <PrivateRoute>
-            <Layout>
-              <SQLTerminal />
             </Layout>
           </PrivateRoute>
         } />

@@ -192,10 +192,10 @@ export default function Inventory() {
   if (!user) {
     return (
       <div className="min-h-screen bg-cyan-50 flex items-center justify-center">
-        <div className="text-center bg-white p-8 rounded-xl shadow-lg">
-          <div className="text-6xl mb-4">📦</div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Inventory Management</h2>
-          <p className="text-gray-600 mb-6">Please log in to manage inventory</p>
+        <div className="text-center bg-white p-6 rounded-lg shadow-md">
+          <div className="text-4xl mb-3">📦</div>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Inventory Management</h2>
+          <p className="text-gray-600 text-sm mb-4">Please log in to manage inventory</p>
           <a 
             href="/login" 
             className="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
@@ -210,9 +210,12 @@ export default function Inventory() {
   return (
     <div className="min-h-screen bg-cyan-50">
       {/* Header */}
-      <div className="bg-cyan-600 text-white p-6 shadow-lg">
+      <div className="bg-gradient-to-r from-cyan-600 to-blue-600 text-white p-4 shadow-lg">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold mb-2">📦 Inventory Management</h1>
+          <h1 className="text-2xl font-bold mb-1 flex items-center gap-2">
+            <span>📦</span>
+            <span>Inventory Management</span>
+          </h1>
           <p className="text-cyan-100">Track stock levels and manage restaurant supplies</p>
         </div>
       </div>
